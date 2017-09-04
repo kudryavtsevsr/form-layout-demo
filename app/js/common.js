@@ -62,9 +62,9 @@ $(function() {
 
 	// Если пытаются отправить форму
 	$("#form").submit(function () {
-		validation['email'] = validEmail(email);
+		validation['email'] = validEmail(email,true);
 		focusout['email'] = true;
-		validation['password'] = validPassword(password);
+		validation['password'] = validPassword(password,true);
 		focusout['password'] = true;
 		formIsValid();
 	});
