@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+
+	<title>form layout demo</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="css/main.min.css">
+
+	<noscript>
+		<style>
+			.form {display: block;}
+			.sign-in {background-color: #93c273!important;}
+		</style>
+	</noscript>
+
+</head>
+
+<body>
+
+	<div class="container">
+		<form action="" class="form" id="form">
+
+			<span class="form__close" id="close" title="close form">&#215;</span>
+
+			<div class="form__avatar"><img src="img/user.png" alt="avatar"></div>
+
+			<div class="form__input input">
+				<input type="email" name="email" class="input__field" id="email" required>
+				<label for="email" class="input__label input__label--email">Email</label>
+			</div>
+
+			<div class="form__input input">
+				<input type="password" name="password" class="input__field" id="password" required pattern=".{5,}">
+				<label for="password" class="input__label input__label--password">Password</label>
+				<a href="#" class="input__link">Forgot your password?</a>
+			</div>
+
+			<div class="form__bottom">
+				<div class="remember">
+					<input type="checkbox" name="remember" id="remember" class="remember__input" checked>		
+					<label for="remember" class="remember__label">Remember</label>
+				</div>
+				<span class="form__toggle-label">Remember?</span>
+
+				<button class="form__sign-in sign-in sign-in--disabled" id="sign-in">Sign In</button>
+			</div>
+
+		</form>
+		<p class="question">Not a registered user yet?  <a href="#" class="question__link" id="open-form">Sign up now!</a></p>
+	</div>
+
+	<script src="js/scripts.min.js"></script>
+
+</body>
+</html>

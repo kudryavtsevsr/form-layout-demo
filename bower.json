@@ -1,0 +1,22 @@
+{
+  "name": "test_bork",
+  "description": "test_bork",
+  "main": "index.js",
+  "authors": [
+    "kudryavtsevsr"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/libs/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "normalize-css": "^7.0.0"
+  }
+}

@@ -1,0 +1,278 @@
+@import "fonts"
+@import "libs"
+@import "vars"
+@import "_mixins/clearfix"
+
+body
+	position: relative
+	font-size: 12px
+	min-width: 320px
+	line-height: 1.75
+	font-family: $default-font
+	color: #999999
+	background: url('../img/pattern.jpg'), url('../img/glow.png') 50% 10% no-repeat
+	background-size: auto, cover
+	user-select: none
+	*
+		margin: 0
+		box-sizing: border-box
+		&:focus
+			//outline: rgba(#999,.1) solid 2px
+			outline: none
+
+// --- Основные стили ---
+.container
+	margin-top: 105px
+	padding: 0 5px
+
+// Форма
+%form
+	border: 1px solid #e0e0e0
+	border-radius: 5px
+	background: #fff
+.form
+	display: none
+	position: relative
+	margin: 0 auto
+	padding: 19px 0 25px 0
+	max-width: 350px
+	@extend %form
+	&:before
+		content: " "
+		display: block
+		position: absolute
+		z-index: -1
+		width: calc(100% - 2px)
+		height: 100%
+		bottom: -3px
+		left: 0
+		@extend %form
+	&:after
+		content: " "
+		display: block
+		position: absolute
+		z-index: -2
+		width: calc(100% - 4px)
+		height: 10%
+		bottom: -5px
+		left: 1px
+		@extend %form
+		box-shadow: 0 0px 7px 3px #e0e0e0
+	&__close
+		position: absolute
+		display: block
+		top: 10px
+		right: 10px
+		line-height: 1
+		height: 13px
+		width: 13px
+		border-radius: 50%
+		color: #fff
+		text-align: center
+		cursor: pointer
+		z-index: 5
+		background-color: #cccccc
+		transition: background-color .2s ease-in-out
+		&:hover
+			background-color: darken(#cccccc, 5)
+			transition: background-color .2s ease-in-out
+	&__avatar
+		display: block
+		width: 57px
+		height: 58px
+		margin: 0 auto
+		margin-bottom: 12px
+	&__input
+		margin: 0 auto
+		margin-bottom: 12px
+	&__toggle-label
+		display: block
+		float: left
+		margin-left: 4px
+		margin-top: -1px
+	&__bottom
+		width: 218px
+		margin: 0 auto
+		margin-top: 19px
+		+clearfix
+	&__sign-in
+		float: right
+		margin-top: -4px
+
+// Поля ввода
+.input
+	display: block
+	position: relative
+	width: 218px
+	&__label
+		color: transparent
+		position: absolute
+		display: block
+		left: 1px
+		top: 1px
+		width: 29px
+		height: 28px
+		border-right: 1px solid #e5e5e8
+		z-index: 1
+		transition: border .5s ease-in-out
+		background-position: center center
+		background-repeat: no-repeat 
+		background-color: #fff
+		&--email
+			background-image: url(../img/icons/user.png)
+		&--password
+			background-image: url(../img/icons/key.png)
+		&:before
+			content: " "
+			position: absolute
+			top: 11px
+			right: -5px
+			width: 0
+			height: 0
+			border-top: 4px solid transparent
+			border-left: 5px solid #fff
+			border-bottom: 4px solid transparent
+		&:after
+			content: " "
+			position: absolute
+			top: 10px
+			right: -6px
+			width: 0
+			height: 0
+			border-top: 5px solid transparent
+			border-left: 6px solid #e5e5e8
+			border-bottom: 5px solid transparent
+			transition: border .5s ease-in-out
+			z-index: -1
+	&__field
+		position: relative
+		width: 100%
+		height: 30px
+		border: 1px solid #e5e5e8
+		box-shadow: 0px 0px 1px 1px transparent
+		transition: all .5s ease-in-out
+		padding-left: 43px
+		color: #999999
+		&:focus
+			border-color:  #93c273
+			box-shadow: 0px 0px 1px 1px rgba(#72985a, .2)
+			transition: all .5s ease-in-out
+			&+.input__label
+				transition: border .5s ease-in-out
+				border-color: #b4b4b4
+				&--email
+					background-image: url(../img/icons/user-dark.png), linear-gradient(to bottom, #ffffff 60%,#f5f5f5 100%)
+				&--password
+					background-image: url(../img/icons/key-dark.png), linear-gradient(to bottom, #ffffff 60%,#f5f5f5 100%)
+				&:after
+					transition: border .5s ease-in-out
+					border-left-color: #b4b4b4
+		&--error
+			border-color: #bd7575!important
+	&__link
+		display: block
+		text-decoration: none
+		margin-left: 2px
+		color: #999999
+
+// Запомнить?
+.remember
+	display: block
+	position: relative
+	float: left
+	margin-left: 17px
+	margin-right: 5px
+	margin-top: 2px
+	width: 40px
+	&__input
+		display: block
+		width: 100%
+		height: 0
+		width: 0
+		&:focus
+			outline: none
+		&:before // circle
+			content: " "
+			position: absolute
+			display: block
+			cursor: pointer
+			z-index: 1
+			width: 16px
+			height: 16px
+			background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 31%, rgba(219,219,219,1) 100%)
+			border: 1px solid #e5e5e5
+			border-radius: 50%
+			top: -2px
+			left: -1px
+			transition: left .5s ease-in-out
+		&:checked:before
+			left: calc(100% - 16px)
+			transition: left .5s ease-in-out
+		&:checked + .remember__label:before
+			margin-left: 0
+			transition: margin-left .5s ease-in-out
+		&:after
+			content: "✖"
+			position: absolute
+			display: block
+			cursor: pointer
+			left: -17px
+			top: 1px
+			font-size: 1em
+			color: #999999
+		&:checked:after
+			content: "✔"
+	&__label // body
+		display: block
+		width: 100%
+		height: 14px
+		border: 1px solid #e5e5e5
+		border-radius: 10px
+		overflow: hidden
+		position: relative
+		color: transparent
+		&:before // background
+			content: " "
+			display: block
+			width: 200%
+			height: 100%
+			margin-left: -100%
+			background: linear-gradient(to right, #88b36b 50% , #bd7575 0)
+			transition: margin-left .5s ease-in-out
+		&:after // shadow
+			content: " "
+			display: block
+			position: absolute
+			cursor: pointer
+			height: 100%
+			width: 100%
+			top: 0
+			left: 0
+			border-radius: 10px
+			box-shadow: inset 0px 1px 1px 1px rgba(#777, .5)
+
+// Sign In кнопка
+.sign-in
+	padding: 5px 9px
+	cursor: pointer
+	color: #fff
+	border: none
+	border-radius: 4px
+	box-shadow: inset 0px -2px 3px -1px rgba(0,0,0,0.2)
+	font-size: 14px
+	background-color: #93c273
+	&:active
+		box-shadow: inset 0px 2px 3px -1px rgba(0,0,0,0.2)
+	&--disabled
+		background-color: #cccccc
+
+// Вопрос под формой
+.question
+	text-align: center
+	margin-top: 16px
+	&__link
+		text-decoration: none
+		color: #72985a
+
+
+@import "media" // Всегда в конце
