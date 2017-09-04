@@ -2,17 +2,17 @@ $(function() {
 
 	// Переменые
 	var form = $("#form"),
-			email = form.find("#email"),
-			password = form.find("#password"),
-			signIn = form.find("#sign-in"),
-			focusout = {
-				email: false,
-				password: false
-			},
-			validation = {
-				email: false,
-				password: false
-			};
+	email = form.find("#email"),
+	password = form.find("#password"),
+	signIn = form.find("#sign-in"),
+	focusout = {
+		email: false,
+		password: false
+	},
+	validation = {
+		email: false,
+		password: false
+	};
 
 	// --- Открытие и закрытие формы ---
 	$("#open-form").on("click", function() {
@@ -35,8 +35,11 @@ $(function() {
 
 	// Если в поле почты вводят данные
 	email.on("input", function() {
-		if(!focusout['email']) return false;
-		validation['email'] = validEmail(email);
+		if(!focusout['email']) {
+			validation['email'] = validEmail(email,false);
+		} else {
+			validation['email'] = validEmail(email,true);
+		}
 		formIsValid();
 	});
 
@@ -49,8 +52,11 @@ $(function() {
 
 	// Если в поле пароля вводят данные
 	password.on("input", function() {
-		if(!focusout['password']) return false;
-		validation['password'] = validPassword(password);
+		if(!focusout['password']) {
+			validation['password'] = validPassword(password,false);
+		} else {
+			validation['password'] = validPassword(password,true);
+		}
 		formIsValid();
 	});
 
@@ -81,32 +87,34 @@ $(function() {
 		form.trigger("reset");
 		formIsValid();
 
+		alert("Data was successfully sent!");
+
 		return false;
 	});
 
 	// --- Вспомогательные функции ---
 
 	// Валидация почты
-	function validEmail(email) {
+	function validEmail(email,addClass) {
 		var re_email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		if (!re_email.test(email.val())) {
-			email.addClass("input__field--error");
+			if(addClass) email.addClass("input__field--error");
 			console.log('email error');
 			return false;
 		} else {
-			email.removeClass("input__field--error");
+			if(addClass) email.removeClass("input__field--error");
 			return true;
 		}
 	}
 
 	// Валидация пароля
-	function validPassword(password) {
+	function validPassword(password,addClass) {
 		if (password.val().length < 5) {
-			password.addClass("input__field--error");
+			if(addClass) password.addClass("input__field--error");
 			console.log('password error');
 			return false;
 		} else {
-			password.removeClass("input__field--error");
+			if(addClass) password.removeClass("input__field--error");
 			return true;
 		}
 	}
